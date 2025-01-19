@@ -14,11 +14,19 @@ const createImage = image => {
     `;
 };
 
-const createGallery = images => {
+const clearGallery = () => {
   const gallery = document.querySelector('.gallery');
   gallery.innerHTML = '';
-  const html = images.map(createImage).join('');
-  gallery.insertAdjacentHTML('beforeend', html);
+};
+
+const createGallery = images => {
+  clearGallery();
+
+  if (images) {
+    const gallery = document.querySelector('.gallery');
+    const html = images.map(createImage).join('');
+    gallery.insertAdjacentHTML('beforeend', html);
+  }
 };
 
 const renderMoreImages = images => {
@@ -27,4 +35,4 @@ const renderMoreImages = images => {
   gallery.insertAdjacentHTML('beforeend', html);
 };
 
-export { createGallery, renderMoreImages };
+export { createGallery, renderMoreImages, clearGallery };

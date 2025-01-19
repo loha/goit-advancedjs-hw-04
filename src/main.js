@@ -1,8 +1,13 @@
 import iziToast from 'izitoast';
 import SimpleLightbox from 'simplelightbox';
 import { searchPixabayImages } from './js/pixabay-api.js';
-import { createGallery, renderMoreImages } from './js/render-functions.js';
+import {
+  createGallery,
+  renderMoreImages,
+  clearGallery,
+} from './js/render-functions.js';
 
+const searchBar = document.querySelector('#search-bar');
 const searchBarForm = document.querySelector('#search-bar-form');
 const loader = document.querySelector('body > .loader');
 const loadMoreImagesBtn = document.querySelector('#btn-load-more');
@@ -121,5 +126,11 @@ const handleLoadMoreImages = async event => {
   }
 };
 
+const clear = () => {
+  createGallery();
+  toggleElement(loadMoreImagesBtn, 'show', false);
+};
+
+searchBar.addEventListener('input', clear);
 searchBarForm.addEventListener('submit', handleSearch);
 loadMoreImagesBtn.addEventListener('click', handleLoadMoreImages);
